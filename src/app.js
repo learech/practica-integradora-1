@@ -30,7 +30,7 @@ app.use('/api/products', productRouter);
 app.use('/', messageRouter); 
 
 
-mongoose.connect('mongodb+srv://rechleandroluis1:123456ca@cluster0.ronuy9h.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://learech:12345ca@cluster0.iczjpqz.mongodb.net/ecommerce');
 
 
 

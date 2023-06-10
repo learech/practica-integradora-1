@@ -35,7 +35,7 @@ inputMSJ.addEventListener('keyup', (e) => {
  function render(data) {
    const html = data.map((elem) => {
         return `<div>
-                <strong>${elem.user}</strong>
+                <strong>Usuario: ${elem.user}</strong>
                 <p>${elem.message}</p>
               </div>`
           }).join(' '); 

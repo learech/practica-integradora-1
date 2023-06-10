@@ -19,12 +19,12 @@ async addProdInCart(pid, cid){
     return await cart.save(); 
 }
 
-// R: Read
+
 async getCarts(){
     return await this.model.find();
 }
 
-// D: Delete
+
 async deleteCart(cid){
     return await this.model.deleteOne({ _id:cid })
 }

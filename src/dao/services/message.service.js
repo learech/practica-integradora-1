@@ -4,7 +4,6 @@ class MessageService {
     constructor(){
         this.model = messageModel;
     }
-   // recupero todos los mensajes 
     async getMessages (){
         return await this.model.find().lean();
     }
