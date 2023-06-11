@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Rodilleras Manía de futsal",
+    "id": "7985b3d6-4d95-42ee-ac86-60ba7bf55f12",
+    "code": "rodilleras3",
+    "stock": 14,
+    "price": 14500,
+    "thumbnails": ["http://localhost:8080/assets/mania.jpeg"],
+    "description": "negras",
+    "status": true
+  },
+  {
+    "title": "Rodilleras Mizuno",
+    "id": "9196dc1a-f42c-4e43-ba77-20a1f7089e6e",
+    "code": "rodi4",
+    "stock": 20,
+    "price": 20000,
+    "thumbnails": ["http://localhost:8080/assets/mizuno.jpg"],
+    "description": "azules",
+    "status": true
+  },
+  {
+    "title": "Rodilleras Nassau",
+    "id": "3ba2dace-90fe-4daf-b897-4bbd1acc2993",
+    "code": "rodi2",
+    "stock": 3,
+    "price": 20000,
+    "thumbnails": ["http://localhost:8080/assets/nassau.jpg"],
+    "description": "azules",
+    "status": true
+  },
+  {
+    "title": "Rodilleras Umbro",
+    "id": "16548364-44e1-420d-bd5a-fce36e6890ff",
+    "code": "rodi8",
+    "stock": 11,
+    "price": 15000,
+    "thumbnails": [
+      "http://localhost:8080/assets/umbro.jpg"
+    ],
+    "description": "negras",
+    "status": true
+  },
+  {
+    "title": "Coderas Manía de futsal",
+    "id": "ca3e9e64-f5b7-46b7-9a9b-e0c7f14d749e",
+    "code": "code4",
+    "stock": 16,
+    "price": 15000,
+    "thumbnails": ["http://localhost:8080/assets/codera_mania.jpg"],
+    "description": "negras",
+    "status": true
+  }
+]

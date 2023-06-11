@@ -1,54 +1,48 @@
+import express from "express"
+import handlebars from "express-handlebars"
+import path from "path"
+import { cartsRouter } from "./routes/carts.router.js"
+import { productRouterHtml } from "./routes/productRouterHtml.router.js"
+import { productsRouter } from "./routes/products.router.js"
+import { productsSocketRouter } from "./routes/productsSocketRouter.router.js"
+import { __dirname, connectMongo, connectSocketServer } from "./utils.js"
+import { chatRouter } from "./routes/chat.router.js"
+const app = express()
+const port = 8080
 
-import express from 'express';
-import handlebars from 'express-handlebars';
-import mongoose from 'mongoose';
-import { Server } from 'socket.io';
-import messageService from './dao/services/message.service.js';
+app.use(express.static(path.join(__dirname, "/public")))
+app.use(express.static(path.join(__dirname, "/public/assets")))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
+app.engine("handlebars", handlebars.engine())
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "handlebars")
 
+//Rutes: API REST WITH JSON
+app.use("/api/products", productsRouter)
+app.use("/api/carts", cartsRouter)
 
-import productRouter from './routers/products.router.js';
-import cartRouter from './routers/carts.router.js';
-import messageRouter from './routers/messages.router.js';
+//Rutes: HTML
+app.use("/products", productRouterHtml)
 
-const app = express();
+//Rutes: SOCKETS
+app.use("/realtimeproducts", productsSocketRouter)
+app.use("/chat",chatRouter)
 
-
-app.use(express.static('public'));
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-
-
-
-app.engine('handlebars', handlebars.engine());
-app.set('views', 'views/'); 
-app.set('view engine', 'handlebars');
-
-
-app.use ('/api/carts', cartRouter);
-app.use('/api/products', productRouter);
-app.use('/', messageRouter); 
-
-
-mongoose.connect('mongodb+srv://learech:12345ca@cluster0.iczjpqz.mongodb.net/ecommerce');
-
-
-
-const webServer = app.listen(8080, ()=>{
-    console.log('Listening on port 8080');
+const httpServer = app.listen(port, () => {
+    console.log(`Example app listening on port http://localhost:${port}`)
 })
 
-const io = new Server(webServer);
+// Execute SocketSever in Rute /realtimeserver
 
-io.on('connection', async (socket)=>{
-    socket.emit('messages', await messageService.getMessages());
+connectSocketServer(httpServer)
 
+//Connect Mongo
+connectMongo()
 
-    socket.on('message', async (msj)=>{
-        console.log(msj);
-        await messageService.addMessage(msj);
-        io.emit('messages', await messageService.getMessages())
-    });
-   
-});
-
+app.get("*", (req, res) => {
+    return res.status(404).json({
+        status: "error", msg: "no encontrado", data: ""
+    })
+})
